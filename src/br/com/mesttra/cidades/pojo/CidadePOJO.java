@@ -2,6 +2,22 @@ package br.com.mesttra.cidades.pojo;
 
 public class CidadePOJO {
 
+//	Represente a tabela cidade(ddd*, nome, nro_habitantes, renda_per_capita, capital**, estado, nome_prefeito) 
+//	com um POJO. 
+//	*PK 
+//	**capital é um booleano.
+//	CREATE TABLE cidades.cidade
+//	(
+//	    ddd integer NOT NULL,
+//	    nome character varying NOT NULL,
+//	    nro_habitantes bigint NOT NULL,
+//	    renda_per_capita double precision NOT NULL,
+//	    capital boolean NOT NULL,
+//	    estado character varying NOT NULL,
+//	    nome_prefeito character varying NOT NULL,
+//	    PRIMARY KEY (ddd)
+//	);
+	
 	private int ddd;
 	private String nome;
 	private int nroHabitantes;
@@ -79,6 +95,14 @@ public class CidadePOJO {
 
 	public void setNomePrefeito(String nomePrefeito) {
 		this.nomePrefeito = nomePrefeito;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "CidadePOJO [ddd=" + ddd + ", nome=" + nome + ", nroHabitantes=" + nroHabitantes + ", rendaPerCapita="
+				+ rendaPerCapita + ", capital=" + capital + ", estado=" + estado + ", nomePrefeito=" + nomePrefeito
+				+ "]";
 	}
 
 	
