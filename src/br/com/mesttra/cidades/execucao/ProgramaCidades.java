@@ -1,6 +1,7 @@
 package br.com.mesttra.cidades.execucao;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.mesttra.cidades.dao.CidadeDAO;
@@ -48,6 +49,72 @@ public class ProgramaCidades {
 		if (cidadeDao.removeCidade(ddd)) {
 			System.out.println(" ## Cidade removida com sucesso ## ");
 		}
+	}
+	
+	private static void listagem(CidadeDAO cidadeDao) {
+		System.out.println(" -- Listagem de Cidades -- ");
+		List<CidadePOJO> cidadesNoBd = cidadeDao.listaCidades();
+		for (CidadePOJO cidade : cidadesNoBd) {
+			System.out.println(cidade);
+		}
+	}
+	
+	private static void listaCapitaisOuInterior(CidadeDAO cidadeDao, Scanner teclado) {
+		System.out.println(" -- Listar cidades que sejam capitais ou não --");
+		System.out.println("Digite 0 para listar capitais e 1 para listar cidades do interior");
+		boolean capital = teclado.nextInt() == 0;		
+		List<CidadePOJO> cidadesNoDb = cidadeDao.listaCidadesFiltradasPorCapital(capital);
+		for (CidadePOJO cidade : cidadesNoDb) {
+			System.out.println(cidade);
+		}
+	}
+
+	private static void contaCidadesPorEstado(CidadeDAO cidadeDao, Scanner teclado) {
+		teclado.nextLine();
+		System.out.println(" -- Contagem de cidades por estado -- ");
+		System.out.println("Digite a sigla do estado desejado: ");
+		String estado = teclado.nextLine();
+		int quantidadeCidades = cidadeDao.contaCidadesPorEstado(estado);
+		System.out.println("Existem " + quantidadeCidades + " no estado buscado");
+	}
+
+	private static void listaCidadesPorEstado(CidadeDAO cidadeDao, Scanner teclado) {
+		teclado.nextLine();
+		System.out.println(" -- Listar cidades por estado --");
+		System.out.println("Digite a sigla do estado desejado: ");
+		String sigla = teclado.nextLine();
+		List<CidadePOJO> cidadesNoDb = cidadeDao.listaCidadesPorEstado(sigla);
+		
+		if (cidadesNoDb.size() == 0) {
+			System.out.println("Nenhuma cidade encontrada para o filtro");
+			return;
+		}
+		for (CidadePOJO cidade : cidadesNoDb) {
+			System.out.println(cidade);
+		}
+	}
+
+	private static void listaCidadesQueComecamCom(CidadeDAO cidadeDao, Scanner teclado) {
+		teclado.nextLine();
+		System.out.println(" -- Listagem de Cidades que iniciam por um texto -- ");
+		System.out.println("Digite um texto para pesquisa: ");
+		String textoLido = teclado.nextLine();
+		List<CidadePOJO> cidadesNoDb = cidadeDao.listaCidadesQueComecamCom(textoLido);
+		for (CidadePOJO cidade : cidadesNoDb) {
+			System.out.println(cidade);
+		}
+	}
+
+	private static void consultaCidade(CidadeDAO cidadeDao, Scanner teclado) {
+		System.out.println(" -- Consultar uma cidade pelo ddd -- ");
+		System.out.println("Digite o ddd desejado: ");
+		int dddBusca = teclado.nextInt();
+		CidadePOJO cidade = cidadeDao.consultaCidade(dddBusca);
+		if (cidade != null) {
+			System.out.println(cidade);
+			return;
+		}
+		System.out.println("A cidade não foi encontrada");
 	}
 
 	public static void main(String[] args) {
