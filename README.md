@@ -1,5 +1,5 @@
 # Cadastro de Cidades
-## Exercicio feito no programa 1000Devs
+## Exercicio feito no Programa 1000Devs
 
 Instruções do Exercício:
 
