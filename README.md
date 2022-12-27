@@ -18,6 +18,7 @@ PARTE 1:
 5. Crie no seu programa principal menu para cadastro de cidades, que peça ao usuário todos os dados e que no fim o insira no banco de dados, este programa deve 
 avaliar se os dados inseridos correspondem ao tipo pedido e tratar este comportamento. Também será possível remover uma cidade pelo DDD através dessa interface..
 
+
 PARTE 2:
 
 1. Crie no seu CidadeDAO o método de listagem de cidades sem filtros.
